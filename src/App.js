@@ -6,7 +6,8 @@ import Items from "./components/Items";
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 
-
+// import Pagination from "./components/Pagination";
+import { toHaveAccessibleDescription } from "@testing-library/jest-dom/dist/matchers";
 
 class App extends React.Component {
   constructor(props) {
@@ -47,6 +48,22 @@ class App extends React.Component {
           category: "Airpods",
           price: "70.99",
         },
+        {
+          id: 5,
+          title: "Ebook",
+          img: "ebooks.jpg",
+          desc: "Хороший букридер",
+          category: "Ebooks",
+          price: "101.99",
+        },
+        {
+          id: 6,
+          title: "Ipad",
+          img: "ipads.jpg",
+          desc: "Хороший планшет",
+          category: "Ipads",
+          price: "130.99",
+        },
       ],
     };
     this.state.currentItems = this.state.items;
@@ -54,7 +71,34 @@ class App extends React.Component {
     this.deleteOrder = this.deleteOrder.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
     this.chooseCategory = this.chooseCategory.bind(this);
+    // this.state.currentPage = this.state.items(1);
+    // this.state.currentPerPage = this.state.items(3);
+    // const lastItemsIndex = currentPage * itemsPerPage;
+    // const firstItemsIndex = lastItemsIndex - itemsPerPage;
+    // const currentItems = this.slice(firstItemsIndex, lastItemsIndex);
+    // const paginate = (pageNumber) => currentPage(pageNumber);
   }
+
+
+  render() {
+    return (
+      <div className="wrapper">
+        <Header orders={this.state.orders} onDelete={this.deleteOrder} />
+        <Categories chooseCategory={this.chooseCategory} />
+        <Items items={this.state.currentItems} onAdd={this.addToOtBar} />
+        {/* <button className="btn btn-primary">Prev Page</button>
+        <button className="btn btn-primary ms-2">Next Page</button>
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          totalItems={items.length}
+          paginate={paginate} */}
+        {/* /> */}
+        <Footer />
+      </div>
+    );
+  }
+
+
   chooseCategory(category) {
     if (category === "all") {
       this.setState({ currentItems: this.state.items });
