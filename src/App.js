@@ -71,12 +71,6 @@ class App extends React.Component {
     this.deleteOrder = this.deleteOrder.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
     this.chooseCategory = this.chooseCategory.bind(this);
-    // this.state.currentPage = this.state.items(1);
-    // this.state.currentPerPage = this.state.items(3);
-    // const lastItemsIndex = currentPage * itemsPerPage;
-    // const firstItemsIndex = lastItemsIndex - itemsPerPage;
-    // const currentItems = this.slice(firstItemsIndex, lastItemsIndex);
-    // const paginate = (pageNumber) => currentPage(pageNumber);
   }
 
 
