@@ -1,12 +1,11 @@
-// import React from "react";
+import React from 'react'
 
-// export default function AboutPage() {
-//   return (
-//     <div>
-//       <input />
-//       <input />
-//       <input />
-//       <input />
-//     </div>
-//   );
-// }
+export default function 
+() {
+  return (
+    <div>
+        
+    </div>
+  )
+}
+
