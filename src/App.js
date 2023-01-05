@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Items from "./components/Items";
 import Header from "./components/Header";
 import Categories from "./components/Categories";
+
 // import Pagination from "./components/Pagination";
 import { toHaveAccessibleDescription } from "@testing-library/jest-dom/dist/matchers";
 
@@ -68,6 +69,7 @@ class App extends React.Component {
     this.state.currentItems = this.state.items;
     this.addToOtBar = this.addToOtBar.bind(this);
     this.deleteOrder = this.deleteOrder.bind(this);
+    this.deleteProduct = this.deleteProduct.bind(this);
     this.chooseCategory = this.chooseCategory.bind(this);
     // this.state.currentPage = this.state.items(1);
     // this.state.currentPerPage = this.state.items(3);
@@ -76,6 +78,7 @@ class App extends React.Component {
     // const currentItems = this.slice(firstItemsIndex, lastItemsIndex);
     // const paginate = (pageNumber) => currentPage(pageNumber);
   }
+
 
   render() {
     return (
@@ -95,6 +98,7 @@ class App extends React.Component {
     );
   }
 
+
   chooseCategory(category) {
     if (category === "all") {
       this.setState({ currentItems: this.state.items });
@@ -110,6 +114,11 @@ class App extends React.Component {
     this.setState({ orders: this.state.orders.filter((el) => el.id !== id) });
   }
 
+  deleteProduct (id){
+    console.log(this.state.items)
+    this.setState({ items: this.state.items.filter((el) => el.id !== id) });
+  }
+
   addToOtBar(item) {
     let isInArray = false;
     this.state.orders.forEach((el) => {
@@ -117,6 +126,18 @@ class App extends React.Component {
     });
     if (!isInArray) this.setState({ orders: [...this.state.orders, item] });
   }
+  render() {
+    return (
+      <div className="wrapper">
+        <Header orders={this.state.orders} onDelete={this.deleteOrder} />
+        <Categories chooseCategory={this.chooseCategory} />
+        <Items items={this.state.currentItems} onAdd={this.addToOtBar} onDelete={this.deleteProduct} />
+        <Footer />
+      </div>
+    );
+  }
+  
+
 }
 
 export default App;
